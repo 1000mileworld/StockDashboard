@@ -1,0 +1,33 @@
+.table-controller{
+    margin: 12px auto;
+    background: linear-gradient(to right, #5050DB, #9651DB);
+    border-radius: 15px;
+}
+
+.table-label {
+    font-weight: 700;
+}
+
+.table-controller div{
+    margin: 8px auto;
+    vertical-align: middle;
+}
+
+.status-label {
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.btn-warning {
+    font-weight: 700;
+}
+
+#update-error {
+    color: red;
+}
+
+#chart {
+    max-width: 1000px;
+}

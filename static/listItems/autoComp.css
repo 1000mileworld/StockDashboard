@@ -1,0 +1,24 @@
+.autoComplete_wrapper {
+    position: relative;
+}
+
+#autoComplete_list_1 {
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+#autoComplete_list_1 li {
+    cursor: pointer;
+    color: black;
+}
+
+#autoComplete_list_1 li:nth-child(odd) {
+    background: white;
+}
+
+#autoComplete_list_1 mark {
+    padding: 0;
+    background-color: lemonchiffon;
+    font-weight: 500;
+}

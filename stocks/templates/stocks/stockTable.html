@@ -1,0 +1,71 @@
+<div class="row table-controller">
+    <div class="col-md" align="center">
+        <div>
+            <span class="table-label">Market Status:</span>
+            {% if market_status %}
+            <span class="status-label" id="market-status" style="background: green;">Open</span>
+            {% else %}
+            <span class="status-label" id="market-status" style="background: red;">Closed</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md" align="center">
+        <div>
+            <label for="mode" class="table-label">Type:</label>
+            <select name="mode" id="data-mode">
+            <option value="realTime">Real Time</option>
+            <option value="1mo">Historical - 1 Month</option>
+            <option value="3mo">Historical - 3 Months</option>
+            <option value="6mo">Historical - 6 Months</option>
+            <option value="1y">Historical - 1 Year</option>
+            <option value="max">Historical - Max</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md" align="center">
+        <div>
+            <label for="stocks" class="table-label">Stock:</label>
+            <select name="stocks" id="stock-selection">
+            <option value="none">Select a stock</option>
+            {% for stock in to_add %}
+            <option value="{{stock.ticker}}">{{stock.ticker}}</option>
+            {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="col-md" align="center">
+        <div>
+            <label for="count" class="table-label">Tweets:</label>
+            <select name="count" id="tweet-count">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="20">30</option>
+                <option value="20">40</option>
+                <option value="50">50</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md" align="center">
+        <a style="text-decoration: none;" id='update-link' href="">
+            <button id="update-btn" class="btn btn-warning">Update</button>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col" align="center">
+        <span id="update-error" style="display: none;">Real time data only available when market is open (M-F 9:30am-4pm EST excluding holidays), displaying most recent minute bar data.</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col" align="center">
+        <div id="chart"></div>
+    </div>
+</div>
+
+{% load static %}
+<script type="text/javascript" src="{% static 'main/loadPage.js' %}"></script>
+<script type="text/javascript" src="{% static 'stocks/plot.js' %}"></script>
+<script type="text/javascript" src="{% static 'stocks/tweet.js' %}"></script>
+

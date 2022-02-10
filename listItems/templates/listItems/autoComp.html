@@ -1,0 +1,43 @@
+<script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/autoComplete.min.js"></script>
+
+<script type="text/javascript">
+    const res = {{res | safe}} //only works in .html file, not .js
+    //const auth_status = {{ info.validity | yesno:"true,false" }};
+
+    const autoCompleteJS = new autoComplete({
+        placeHolder: "Search by ticker symbol or company name",
+        data: {
+            src: res
+        },
+        resultItem: {
+            highlight: {
+                render: true
+            }
+        }
+    });
+
+    const searchInput = document.querySelector('#autoComplete');
+    const searchForm = document.getElementById('searchForm')
+
+    function submitMatch(){
+        const matches = document.querySelectorAll("#autoComplete_list_1 li");
+        matches.forEach(function(item) {
+            item.addEventListener("click", function(){
+                symbol = item.textContent.split(' - ')[0];
+                searchInput.value = symbol;
+                searchForm.submit();
+            });
+        });
+    };
+
+    searchInput.addEventListener('change', submitMatch);
+    searchInput.addEventListener('keyup', submitMatch);
+
+    function enterVal(e){
+        if(e && e.keyCode == 13) { //check if enter key is pressed
+            searchForm.submit();
+            //console.log(auth_status)
+        }
+    }
+
+</script>

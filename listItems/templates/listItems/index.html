@@ -1,0 +1,74 @@
+<div class="row" align="center">
+    <form action="" method="POST" id="searchForm">
+      {% csrf_token %}
+        <div class="col-md-8">
+            <div class="search"> 
+                <i class="fa fa-search"></i> 
+                <input id="autoComplete" type="text" name="searchBar" class="form-control" onkeyup="return enterVal(event)"> 
+                <button type="submit" class="btn btn-primary">Add</button> 
+                <span class="error" align="left">
+                  {% if info.count == 10 %}
+                    You have reached a limit of 10 stocks
+                  {% elif not info.validity %}
+                    Apologies: this app is limited to companies in the S&P 500
+                  {% elif info.is_duplicate %}
+                    Stock has already been entered
+                  {% endif %}
+                </span>
+              </div>
+        </div>
+    </form>
+</div>
+
+<div class="row table-header">
+    <div class="col" align="center">Stock</div>
+    <div class="col" align="center">Prev. Open</div>
+    <div class="col" align="center">Prev. Close</div>
+    <div class="col" align="center">52-Week Low</div>
+    <div class="col" align="center">52-Week High</div>
+    <div class="col" align="center"></div> <!--for delete button-->
+</div>
+
+<ul class="table-list" id="stockList">
+    {% for stock in to_add %}
+        <li id='s{{stock.id}}'>
+            <div class="row">
+              <div class="col item-ticker" align="center"><span class="item-label">{{stock.ticker}}</span></div>
+              <div class="col item-company" align="center"><span class="item-label">{{stock.company}}</span></div>
+              
+              <div class="col" align="center"><span class="table-item">${{stock.open}}</span></div>
+              <div class="col" align="center"><span class="table-item">${{stock.close}}</span></div>              
+              <div class="col" align="center"><span class="table-item">${{stock.low_52wk}}</span></div>
+              <div class="col" align="center"><span class="table-item">${{stock.high_52wk}}</span></div>
+
+              <div class="col" align="center">
+                  <a style="text-decoration: none;" href="delete/{{stock.id}}">
+                  <button type="button" class="btn btn-danger">Delete</button>
+                  </a>
+              </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>  
+
+{% include "listItems/autoComp.html" %} 
+
+<script type="text/javascript"> 
+  const ids = {{stock_ids | safe}}
+  function showHide(){ //show or hide ticker/company
+    class_name = this.className.split(" ")[1];
+    parent_id = this.parentElement.parentElement.id;
+    if (class_name=="item-ticker"){
+      make_visible = document.querySelector(`#${parent_id} `+ ".item-company");
+    } else if (class_name=="item-company"){ 
+      make_visible = document.querySelector(`#${parent_id} `+ ".item-ticker");
+    }
+    make_visible.style.display = "inline-block"
+    this.style.display = "none"
+  }
+
+  for(let i=0; i<ids.length; i++){
+    document.querySelector(`#s${ids[i]} `+ ".item-ticker").addEventListener('click', showHide);
+    document.querySelector(`#s${ids[i]} `+ ".item-company").addEventListener('click', showHide);
+  }
+</script> 

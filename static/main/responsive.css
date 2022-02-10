@@ -1,0 +1,11 @@
+@media only screen and (max-width: 992px) {
+    .form-control {
+        font-size: 10px;
+    }
+    .table-header, .table-list {
+        margin: 0;
+    }
+    #tweet-feed {
+        position: unset;
+    }
+}

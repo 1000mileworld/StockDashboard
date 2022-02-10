@@ -1,0 +1,136 @@
+.search {
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+    margin: 20px auto 50px auto;
+    max-width: 800px;
+}
+
+.search input {
+    height: 60px;
+    text-indent: 25px;
+    border: 2px solid #d6d4d4
+}
+
+.search input:focus {
+    box-shadow: none;
+    border: 2px solid blue
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 16px;
+    z-index: 20;
+}
+
+.search button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    width: 110px;
+    background: blue
+}
+
+.error {
+    position: absolute;
+    left: 5px;
+    top: 65px;
+    color: red;
+}
+
+.table-list {
+    margin: auto 1%;
+    height: 300px;
+    overflow: scroll;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.table-header {
+    margin: auto 1%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border: solid 1px;
+    background: #6F2DA8;
+}
+
+/* width */
+.table-list::-webkit-scrollbar {
+    width: 13px;
+  }
+  
+  /* Track */
+  .table-list::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  .table-list::-webkit-scrollbar-thumb {
+    background: black; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  .table-list::-webkit-scrollbar-thumb:hover {
+    background: #17272B; 
+  }
+
+.table-item {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.item-ticker {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.item-company {
+    display:none;
+    cursor: pointer;
+}
+
+.item-label {
+    background: #C45AEC;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    position: relative;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+ul li .row .col{
+    margin: 10px auto;
+}
+/* Set all odd list items to a different color (zebra-stripes) */
+#stockList li:nth-child(odd) {
+background: rgb(62,62,62);
+}
+
+#stockList li:nth-child(even) {
+    background: rgb(41,41,41);
+}
+
+@media only screen and (max-width: 700px) {
+    .form-control {
+        font-size: 10px;
+    }
+}
