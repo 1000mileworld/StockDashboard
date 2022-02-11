@@ -85,15 +85,6 @@ CHANNEL_LAYERS = {
         },
     },
 }
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient"
-        }
-    }
-}
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
