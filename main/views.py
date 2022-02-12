@@ -23,32 +23,32 @@ def index(request):
    
     searchInfo = SearchField.objects.first()
 
-    if request.method == 'POST':
-        input = request.POST['searchBar']
-        isValid,convertedTicker,convertedCompany = validateInput(input,ticker,company)
-        if isValid and searchInfo.count<stock_limit: # don't go over limit
-            searchInfo.validity = True
-            if convertedTicker not in curr_stocks: # no duplicate entered
-                searchInfo.is_duplicate = False
-                low, high, open, close = getYF_data(convertedTicker)
-                new_stock = Stock(
-                    ticker = convertedTicker,
-                    company = convertedCompany,
-                    open = open,
-                    close = close,
-                    low_52wk = low,
-                    high_52wk = high
-                )
-                new_stock.save()
+    # if request.method == 'POST':
+    #     input = request.POST['searchBar']
+    #     isValid,convertedTicker,convertedCompany = validateInput(input,ticker,company)
+    #     if isValid and searchInfo.count<stock_limit: # don't go over limit
+    #         searchInfo.validity = True
+    #         if convertedTicker not in curr_stocks: # no duplicate entered
+    #             searchInfo.is_duplicate = False
+    #             low, high, open, close = getYF_data(convertedTicker)
+    #             new_stock = Stock(
+    #                 ticker = convertedTicker,
+    #                 company = convertedCompany,
+    #                 open = open,
+    #                 close = close,
+    #                 low_52wk = low,
+    #                 high_52wk = high
+    #             )
+    #             new_stock.save()
                 
-                searchInfo.count+=1
-            else:
-                searchInfo.is_duplicate = True
-        else:
-            searchInfo.validity = False # input not found
-        searchInfo.save()
+    #             searchInfo.count+=1
+    #         else:
+    #             searchInfo.is_duplicate = True
+    #     else:
+    #         searchInfo.validity = False # input not found
+    #     searchInfo.save()
 
-        return redirect('/') #homepage
+    #     return redirect('/') #homepage
 
     res = [i +' - '+j for i, j in zip(ticker, company)] #'TICKER - Company'
     stock_ids = [str(s.id) for s in searchResults]
