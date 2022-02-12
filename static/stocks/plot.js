@@ -149,30 +149,6 @@ function processHistorical(x_val,y_val){
     });
 }
 
-//Handle update button click
-// function handleUpdate() {
-//     var data_mode = document.querySelector('#data-mode').value;
-//     var stock_select = document.querySelector('#stock-selection').value;
-//     if (market_status=="Closed" && data_mode=="realTime"){
-//         document.querySelector('#update-error').style.display = "block"
-//     }else if (stock_select=='none'){
-//         alert('Please select a stock!')
-//     }else{
-//         if (data_mode=='realTime'){
-//             Plotly.newPlot('chart',plotData,layout);
-//             trace1.x = []
-//             trace1.y = []
-//             trace2.x = []
-//             trace2.y = []
-//         }
-//         document.querySelector('#update-error').style.display = "none"
-//         socket.send(JSON.stringify({
-//             'data_mode': data_mode,
-//             'stock_select': stock_select,
-//         }));
-//     }
-// };
-
 document.querySelector('#update-btn').addEventListener('click', handleUpdate)
 
 function handleUpdate(){
