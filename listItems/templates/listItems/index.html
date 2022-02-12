@@ -1,9 +1,9 @@
 <div class="row" align="center">
     <form action="" method="POST" id="searchForm">
-      {% csrf_token %}
         <div class="col-md-8">
             <div class="search"> 
-                <i class="fa fa-search"></i> 
+                <i class="fa fa-search"></i>
+                {% csrf_token %}
                 <input id="autoComplete" type="text" name="searchBar" class="form-control" onkeyup="return enterVal(event)"> 
                 <button type="submit" class="btn btn-primary">Add</button> 
                 <span class="error" align="left">
