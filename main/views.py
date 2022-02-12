@@ -20,14 +20,14 @@ def index(request):
     isValid = True
     searchResults = Stock.objects.all()
     curr_stocks = set(Stock.objects.values_list('ticker', flat=True)) # flat returned results are single values, rather than one-tuples
-    numStocks = Stock.objects.count()
-
+ 
     searchInfo = SearchField.objects.first()
+    searchInfo.count = Stock.objects.count()
 
     if request.method == 'POST':
         input = request.POST['searchBar']
         isValid,convertedTicker,convertedCompany = validateInput(input,ticker,company)
-        if isValid and numStocks<stock_limit: # don't go over limit
+        if isValid and searchInfo.count<stock_limit: # don't go over limit
             searchInfo.validity = True
             if convertedTicker not in curr_stocks: # no duplicate entered
                 searchInfo.is_duplicate = False
@@ -47,10 +47,9 @@ def index(request):
                 searchInfo.is_duplicate = True
         else:
             searchInfo.validity = False # input not found
-        searchInfo.save()
-
         return redirect('/') #homepage
-
+    
+    searchInfo.save()
     res = [i +' - '+j for i, j in zip(ticker, company)] #'TICKER - Company'
     stock_ids = [str(s.id) for s in searchResults]
 

@@ -32,4 +32,4 @@ class MainConfig(AppConfig):
             s.save()
 
         SearchField.objects.all().delete()
-        SearchField(count=len(symbols)).save()
+        SearchField().save()
