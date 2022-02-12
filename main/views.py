@@ -16,12 +16,12 @@ from stocks import alpaca
 stock_limit = 10
 # Create your views here.
 def index(request):
-    ticker,company = loadSP500() # load list of ticker symbols and company names
-    isValid = True
-    searchResults = Stock.objects.all()
-    curr_stocks = set(Stock.objects.values_list('ticker', flat=True)) # flat returned results are single values, rather than one-tuples
+    # ticker,company = loadSP500() # load list of ticker symbols and company names
+    # isValid = True
+    # searchResults = Stock.objects.all()
+    # curr_stocks = set(Stock.objects.values_list('ticker', flat=True)) # flat returned results are single values, rather than one-tuples
    
-    searchInfo = SearchField.objects.first()
+    # searchInfo = SearchField.objects.first()
 
     # if request.method == 'POST':
     #     input = request.POST['searchBar']
@@ -50,19 +50,21 @@ def index(request):
 
     #     return redirect('/') #homepage
 
-    res = [i +' - '+j for i, j in zip(ticker, company)] #'TICKER - Company'
-    stock_ids = [str(s.id) for s in searchResults]
+    # res = [i +' - '+j for i, j in zip(ticker, company)] #'TICKER - Company'
+    # stock_ids = [str(s.id) for s in searchResults]
 
-    market_status = alpaca.isOpen()
-    context = {
-        'to_add': searchResults,
-        'res': res,
-        'info': searchInfo,
-        'stock_ids': stock_ids,
-        'market_status': market_status,
-    }
+    # market_status = alpaca.isOpen()
+    # context = {
+    #     'to_add': searchResults,
+    #     'res': res,
+    #     'info': searchInfo,
+    #     'stock_ids': stock_ids,
+    #     'market_status': market_status,
+    # }
 
-    return render(request, 'main/base.html', context)
+    # return render(request, 'main/base.html', context)
+
+    return render(request, 'main/base.html')
 
 def delete(request, pk):
 
