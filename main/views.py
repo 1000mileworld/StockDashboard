@@ -47,6 +47,8 @@ def index(request):
                 searchInfo.is_duplicate = True
         else:
             searchInfo.validity = False # input not found
+        
+        searchInfo.save() #need to keep this here because of redirect
         return redirect('/') #homepage
     
     searchInfo.save()
