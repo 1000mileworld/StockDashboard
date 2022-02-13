@@ -43,6 +43,8 @@ class MainConfig(AppConfig):
         )
         s.save()
 
+        Stock.objects.all().delete()
+        
         ticker = 'AAPL'
         low, high, open, close = getYF_data(ticker)
         s = Stock(
