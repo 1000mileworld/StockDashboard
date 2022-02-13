@@ -1,8 +1,8 @@
 const market_status = document.querySelector('#market-status').textContent
-const ws_url = 'ws://' + window.location.host + '/ws/graph/';
+const ws_url = 'wss://' + window.location.host + '/ws/graph/';
 const socket = new WebSocket(ws_url);
 
-const ws_url2 = 'ws://' + window.location.host + '/ws/tweet/';
+const ws_url2 = 'wss://' + window.location.host + '/ws/tweet/';
 const tweetSocket = new WebSocket(ws_url2);
 
 const waitForOpenConnection = (socket) => {
