@@ -9,3 +9,9 @@
         position: unset;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .search {
+        margin-top: 30px;
+    }
+}
