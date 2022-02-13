@@ -18,13 +18,13 @@ stock_limit = 10
 def index(request):
     ticker,company = loadSP500() # load list of ticker symbols and company names
 
-    #prefill data for default stock since can't load in app ready() function
-    startup_stock = 'AAPL'
-    if Stock.objects.filter(ticker=startup_stock).exists():
-        stock_obj = Stock.objects.get(ticker=startup_stock)
-        if stock_obj.open==0:
-            stock_obj.low_52wk, stock_obj.high_52wk, stock_obj.open, stock_obj.close = getYF_data(startup_stock)
-            stock_obj.save()
+    #delete duplicates if added at startup (problem with Heroku)
+    symbols = ['FB','AAPL','AMZN','NFLX','GOOGL']
+    for symbol in symbols:
+        if Stock.objects.filter(ticker=symbol).exists():
+            id_query = Stock.objects.filter(ticker=symbol).values('id')
+            for id_dict in id_query[1:]:
+                Stock.objects.get(id=id_dict['id']).delete()
 
     isValid = True
     searchResults = Stock.objects.all()
