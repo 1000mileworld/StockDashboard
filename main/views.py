@@ -14,13 +14,14 @@ from stocks.func import loadSP500, validateInput, getYF_data
 from stocks import alpaca
 
 stock_limit = 10
+SYMBOLS = ['FB','AAPL','AMZN','NFLX','GOOGL']
+
 # Create your views here.
 def index(request):
     ticker,company = loadSP500() # load list of ticker symbols and company names
 
     #delete duplicates if added at startup (problem with Heroku)
-    symbols = ['FB','AAPL','AMZN','NFLX','GOOGL']
-    for symbol in symbols:
+    for symbol in SYMBOLS:
         if Stock.objects.filter(ticker=symbol).exists():
             id_query = Stock.objects.filter(ticker=symbol).values('id')
             for id_dict in id_query[1:]:
