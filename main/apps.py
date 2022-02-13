@@ -14,9 +14,18 @@ class MainConfig(AppConfig):
 
         saveSP500()
         tickers,companies = loadSP500()
-        symbols = ['FB','AAPL','AMZN','NFLX','GOOGL']
+        
         Stock.objects.all().delete()
+        default = 'AAPL' #change in main/views/index too
+        convertedTicker,convertedCompany = validateInput(default,tickers,companies)[1:3]
+        s = Stock(
+                ticker = convertedTicker,
+                company = convertedCompany,
+            )
+        s.save()
 
+        #---------------Model saves twice if using getYF_data-----------------
+        # symbols = ['FB','AAPL','AMZN','NFLX','GOOGL']
         # TickerInfo = namedtuple("PriceInfo","ticker company low high open close")
         # info_arr = set()
         # for i in range(len(symbols)):
@@ -39,12 +48,12 @@ class MainConfig(AppConfig):
         #     s.save()
 
         
-        for i in range(len(symbols)):
-            s = Stock(
-                ticker = symbols[i],
-                company = "",
-            )
-            s.save()
+        # for i in range(len(symbols)):
+        #     s = Stock(
+        #         ticker = symbols[i],
+        #         company = "",
+        #     )
+        #     s.save()
 
         SearchField.objects.all().delete()
-        SearchField(count=len(symbols)).save()
+        SearchField(count=1).save()
