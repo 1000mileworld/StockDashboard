@@ -28,7 +28,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['market-master.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://market-master.herokuapp.com']
 
 # Application definition
 
@@ -54,8 +55,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-CSRF_TRUSTED_ORIGINS = ['https://market-master.herokuapp.com/']
 
 ROOT_URLCONF = 'StockDashboard.urls'
 
