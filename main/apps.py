@@ -41,10 +41,10 @@ class MainConfig(AppConfig):
             low_52wk = low,
             high_52wk = high
         )
-        s.save()
+        s.save() #save apparently is being called twice
 
-        Stock.objects.all().delete()
-        
+        #Stock.objects.all().delete() #this works
+
         ticker = 'AAPL'
         low, high, open, close = getYF_data(ticker)
         s = Stock(
