@@ -5,7 +5,7 @@ A stock dashboard for monitoring real time and checking historical data of compa
 
 ## Features
 - Real time data during market open (M-F, 9:30am-4pm EST, except holidays)
-- Historical data during market close, with various lookback periods up to stock inception
+- Historical data with various lookback periods up to stock inception
 - Most recent tweets (10-50) related to a particular stock, pulled directly from Twitter
 - Previous day's open, close, low, high of a selected stock
 
