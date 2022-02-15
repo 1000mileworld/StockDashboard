@@ -8,6 +8,7 @@ A stock dashboard for monitoring real time and checking historical data of compa
 - Historical data with various lookback periods up to stock inception
 - Most recent tweets (10-50) related to a particular stock, pulled directly from Twitter
 - Previous day's open, close, low, high of a selected stock
+- Autocomplete of stocks listed in the S&P 500 to assist during searching
 
 ## Sources
 - Alpaca (real time)
