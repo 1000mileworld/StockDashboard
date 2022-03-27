@@ -27,7 +27,7 @@ var trace2 = {
         color: 'red',
         width: 2
     },
-    name: 'Ask'
+    name: 'Live'
 };
 var trace3 = {
     x:[],

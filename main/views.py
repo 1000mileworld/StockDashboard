@@ -1,6 +1,5 @@
 from re import S, search
 from django.shortcuts import redirect, render
-from matplotlib.pyplot import get
 #import pdb; pdb.set_trace()
 import json
 from django.core.serializers.json import DjangoJSONEncoder

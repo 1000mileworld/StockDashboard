@@ -1,6 +1,7 @@
 from alpaca_trade_api.stream import Stream
 from alpaca_trade_api.rest import REST,  TimeFrame
 from decouple import config
+import requests, json
 
 API_KEY = config('APCA_API_KEY_ID')
 API_SECRET = config('APCA_API_SECRET_KEY')
@@ -19,9 +20,18 @@ def getBars(symbol,start,end):
 def isOpen():
     return api.get_clock().is_open
 
-def getQuote(symbol):
+def getQuote(symbol): #deprecated v1 endpoint
     return api.get_last_quote(symbol)
 
-def getLastClose(symbol):
+def getLastClose(symbol): #deprecated v1 endpoint
     bar = api.get_barset(symbol,limit=1,timeframe='minute')
     return bar[symbol][0].c
+
+def getLastTrade(symbol):
+    url = f'https://data.alpaca.markets/v2/stocks/{symbol}/trades/latest'
+    response = requests.get(url, headers={
+        'APCA-API-KEY-ID': API_KEY,
+        'APCA-API-SECRET-KEY': API_SECRET,
+    })
+    data = json.loads(response.text)
+    return data['trade']['p']

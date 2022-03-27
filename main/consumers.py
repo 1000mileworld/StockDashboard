@@ -78,7 +78,7 @@ class WSConsumer(AsyncWebsocketConsumer):
         #     await sleep(1)
 
         while alpaca.isOpen():
-            quote = alpaca.getQuote(stock_select)
+            quote = alpaca.getLastTrade(stock_select)
             await self.send(json.dumps({
                 'data_mode': data_mode,
                 'stock_select': stock_select,
@@ -88,7 +88,7 @@ class WSConsumer(AsyncWebsocketConsumer):
             await sleep(1)
 
         while not alpaca.isOpen():
-            close = alpaca.getLastClose(stock_select)
+            close = alpaca.getLastTrade(stock_select)
             await self.send(json.dumps({
                 'data_mode': data_mode,
                 'stock_select': stock_select,
